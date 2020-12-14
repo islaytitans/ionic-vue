@@ -1,7 +1,7 @@
 <template>
   <base-layout page-title="All Memories">
     <ion-list>
-      <ion-item>New York</ion-item>
+      <ion-item router-link="/memories/1">New York</ion-item>
       <ion-item>Canada</ion-item>
       <ion-item>Egypt</ion-item>
       <ion-item>Cambodia</ion-item>

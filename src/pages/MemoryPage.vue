@@ -1,5 +1,5 @@
 <template>
-    <base-layout page-title="Memory">
+    <base-layout page-title="Memory" page-default-back-link="/memories">
         <h2>The memory</h2>
     </base-layout>
 </template>

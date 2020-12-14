@@ -13,6 +13,10 @@ const routes: Array<RouteRecordRaw> = [
     component: MemoriesPage
   },
   {
+    path: '/memories/:id',
+    component: () => import('../pages/MemoryPage.vue')
+  },
+  {
     path: '/home',
     name: 'Home',
     component: Home
