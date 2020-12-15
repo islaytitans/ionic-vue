@@ -4,6 +4,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import BaseLayout from './components/base/BaseLayout.vue';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
 
 import { IonicVue } from '@ionic/vue';
 
@@ -31,6 +32,8 @@ const app = createApp(App)
   .use(IonicVue)
   .use(router)
   .use(store);
+
+defineCustomElements(window);
 
 app.component('base-layout', BaseLayout);
 
