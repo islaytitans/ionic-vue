@@ -11,7 +11,7 @@
       </ion-item>
       <ion-item>
         <ion-thumbnail slot="start">
-          <img src="" alt="" />
+          <img :src="chosenImageUrl" alt="" />
         </ion-thumbnail>
         <ion-button type="button" fill="clear" @click="takePhoto">
           <ion-icon slot="start" :icon="camera"></ion-icon>
@@ -57,8 +57,7 @@ export default defineComponent({
     return {
       enteredTitle: '',
       enteredDescription: '',
-      enteredImage: '',
-      previewImageUrl: '',
+      chosenImageUrl: 'https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg',
       camera
     }
   },
@@ -67,7 +66,7 @@ export default defineComponent({
       const memoryData: Memory = {
         title: this.enteredTitle,
         description: this.enteredDescription,
-        image: this.enteredImage,
+        image: this.chosenImageUrl,
       };
       this.$emit('save-memory', memoryData);
     },
@@ -75,11 +74,11 @@ export default defineComponent({
       const photo: CameraPhoto = await Camera.getPhoto({
         resultType: CameraResultType.Uri,
         source: CameraSource.Prompt,
-        quality: 60
+        quality: 100
       });
 
       if (photo.webPath) {
-        this.previewImageUrl = photo.webPath.toString();
+        this.chosenImageUrl = photo.webPath.toString();
       }
     }
   }
