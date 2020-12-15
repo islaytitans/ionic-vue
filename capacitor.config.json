@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "ionic-vue",
+  "appId": "dev.jonathanrobbins.nursesday",
+  "appName": "NursesDay",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "dist",
