@@ -7,7 +7,12 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating">Description</ion-label>
-        <ion-textarea type="text" rows="5" required v-model="enteredDescription" />
+        <ion-textarea
+          type="text"
+          rows="5"
+          required
+          v-model="enteredDescription"
+        />
       </ion-item>
       <ion-item>
         <ion-thumbnail slot="start">
@@ -33,16 +38,25 @@ import {
   IonTextarea,
   IonButton,
   IonThumbnail,
-  IonIcon
+  IonIcon,
 } from "@ionic/vue";
-import { CameraPhoto, CameraResultType, CameraSource, Plugins } from '@capacitor/core';
-import { camera } from 'ionicons/icons';
+import {
+  Capacitor,
+  CameraPhoto,
+  CameraResultType,
+  CameraSource,
+  FileReadResult,
+  FilesystemDirectory,
+  FilesystemEncoding,
+  Plugins,
+} from "@capacitor/core";
+import { camera } from "ionicons/icons";
 import Memory from "@/interfaces/Memory";
 
-const { Camera } = Plugins;
+const { Camera, Filesystem } = Plugins;
 
 export default defineComponent({
-  emits: ['save-memory'],
+  emits: ["save-memory"],
   components: {
     IonList,
     IonItem,
@@ -51,15 +65,16 @@ export default defineComponent({
     IonTextarea,
     IonButton,
     IonThumbnail,
-    IonIcon
+    IonIcon,
   },
   data() {
     return {
-      enteredTitle: '',
-      enteredDescription: '',
-      chosenImageUrl: 'https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg',
-      camera
-    }
+      enteredTitle: "",
+      enteredDescription: "",
+      chosenImageUrl:
+        "https://image.shutterstock.com/image-vector/ui-image-placeholder-wireframes-apps-260nw-1037719204.jpg",
+      camera,
+    };
   },
   methods: {
     submitForm() {
@@ -68,7 +83,7 @@ export default defineComponent({
         description: this.enteredDescription,
         image: this.chosenImageUrl,
       };
-      this.$emit('save-memory', memoryData);
+      this.$emit("save-memory", memoryData);
     },
     async takePhoto() {
       const photo: CameraPhoto = await Camera.getPhoto({
