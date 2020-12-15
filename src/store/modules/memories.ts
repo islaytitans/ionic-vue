@@ -1,4 +1,5 @@
-import Memory from "@/interfaces/Memory"
+import { ActionContext } from 'vuex';
+import Memory from "@/interfaces/Memory";
 
 interface MemoriesState {
     memories: Array<Memory>;
@@ -29,9 +30,28 @@ const getters = {
     memory
 }
 
-const mutations = {}
+function addMemory(state: MemoriesState, memoryData: Memory) {
+    const newMemory: Memory = {
+        id: state.memories.length + 1,
+        title: memoryData.title,
+        description: memoryData.description,
+        image: memoryData.image
+    };
 
-const actions = {}
+    state.memories.unshift(newMemory);
+}
+
+const mutations = {
+    addMemory
+}
+
+function createMemory(context: ActionContext<unknown, unknown>, memoryData: Memory) {
+    context.commit('addMemory', memoryData);
+}
+
+const actions = {
+    createMemory
+}
 
 export default {
     state,
